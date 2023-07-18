@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200 py-8">
+    <div class="container mx-auto">
+        <!-- Upload Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-4">
+            <h2 class="text-xl font-bold mb-4">Upload a CSV</h2>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" name="csv_file" accept=".csv">
+                <input type="submit" value="Upload" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md cursor-pointer">
+            </form>
+        </div>
+
+        <!-- Chatbot Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-4">
+            <h2 class="text-xl font-bold mb-4">Chat with our bot</h2>
+            <div class="mb-4">
+                <label for="userInput" class="block text-gray-700 mb-2">Your Message:</label>
+                <input type="text" id="userInput" class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div>
+                <label for="botOutput" class="block text-gray-700 mb-2">Bot Response:</label>
+                <textarea id="botOutput" class="w-full px-3 py-2 border rounded-md" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- Preview Dataset -->
+        <div class="bg-white rounded-lg shadow-md p-6 overflow-x-auto">
+            <h2 class="text-xl font-bold mb-4">Preview Dataset</h2>
+            <div id="dataset">
+                <!-- Here goes the HTML DataFrame from pandas -->
+                {% if data_frame %}
+                    <div class="dataset-preview">
+                        {{ data_frame | safe }}
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
